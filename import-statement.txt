@@ -1,0 +1,39 @@
+When you execute the statement import modulename, the Python interpreter performs several steps to import the module and execute its code. Here’s a detailed breakdown of what happens:
+
+Steps in Module Import
+1. Module Search:
+- Python searches for the module named modulename in the list of directories specified by sys.path.
+- sys.path includes the directory containing the input script (or the current directory), PYTHONPATH (if set), and the installation-dependent default.
+2. Module Loading:
+- If the module is found, Python loads the module. This involves reading the module’s source code from the file.
+3. Module Compilation:
+- If the module is a Python source file (.py), Python compiles it to bytecode (.pyc file) if necessary.
+- If the module is already compiled and up-to-date, Python uses the existing bytecode file.
+4. Module Execution:
+- Python executes the module’s code. This means that all the top-level statements in the module are executed in order.
+- This includes function and class definitions, as well as any other executable statements (e.g., variable assignments, print statements).
+5. Module Caching:
+- The module object is added to sys.modules. This ensures that subsequent imports of the same module use the cached version, avoiding re-execution of the module’s code.
+
+Example
+Consider a module named example_module.py:
+
+# example_module.py
+print("Module is being executed")
+
+def greet():
+    print("Hello from example_module")
+
+When you import this module:
+import example_module
+The following happens:
+1. Python searches for example_module.py.
+2. Python loads and compiles the module (if necessary).
+3. Python executes the module’s code, printing “Module is being executed”.
+4. The module is added to sys.modules.
+
+Re-importing
+If you import the module again in the same session:
+import example_module
+Python uses the cached version from sys.modules, so the module’s code is not executed again.
+
